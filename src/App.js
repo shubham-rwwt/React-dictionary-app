@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useState } from 'react'
+import Header from './components/Header'
+import ResultList from './components/ResultList'
+
+import './App.css'
+
+export const inputContext = createContext()
 
 function App() {
+  const [inputValue, setInputValue] = useState('')
+
+  const value = {
+    inputValue,
+    setInputValue,
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <inputContext.Provider value={value}>
+      <div className="App">
+        <Header />
+        <ResultList />
+      </div>
+    </inputContext.Provider>
+  )
 }
 
-export default App;
+export default App
